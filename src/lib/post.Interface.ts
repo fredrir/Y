@@ -1,4 +1,4 @@
-export interface Post {
+export type PostType = {
   id: string;
   body: string;
   userId: string;
@@ -7,6 +7,6 @@ export interface Post {
   };
 }
 
-export interface Comment extends Post {
+export type CommentType  = PostType & {
   parentID: string;
 }

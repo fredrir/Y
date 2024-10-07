@@ -1,7 +1,7 @@
-import { Post } from "./post.Interface";
-import { Comment } from "./post.Interface";
+import { PostType } from "./post.Interface";
+import { CommentType } from "./post.Interface";
 
-export const mockData: Post[] = [
+export const mockData: PostType[] = [
   {
     id: "1",
     body: "mock body1",
@@ -28,7 +28,7 @@ export const mockData: Post[] = [
   },
 ];
 
-export const commentsMock: Comment[] = [
+export const commentsMock: CommentType[] = [
   {
     id: "1",
     body: "mock comment",

@@ -1,4 +1,5 @@
 export interface User {
   username: string;
-  posts: string[];
+  postIds: string[];
+  likedPostIds: string[];
 }

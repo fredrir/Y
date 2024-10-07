@@ -16,7 +16,7 @@ export const Navbar = () => {
             </h1>
           </a>
 
-          <div className="hidden flex-row gap-2 text-center md:flex">
+          <div className="flex-row gap-2 text-center hidden md:flex">
             <ThemeToggle />
             <input
               type="search"

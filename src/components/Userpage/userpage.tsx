@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { Post } from "../../lib/post.Interface";
-import { User } from "../../lib/user.Interface";
+import { PostType } from "../../lib/post.Interface";
+import { CommentType } from "../../lib/comment.Interface";
 
 export const Userpage = () => {
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [likedPosts, setLikedPosts] = useState<Post[]>([]);
+  const [posts, setPosts] = useState<PostType[]>([]);
+  const [likedPosts, setLikedPosts] = useState<PostType[]>([]);
+  const [comments, setComments] = useState<CommentType[]>([]);
 
   useEffect(() => {
     setPosts([]);
@@ -12,6 +13,10 @@ export const Userpage = () => {
 
   useEffect(() => {
     setLikedPosts([]);
+  });
+
+  useEffect(() => {
+    setComments([]);
   });
 
   return (

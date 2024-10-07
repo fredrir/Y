@@ -1,30 +1,26 @@
-import { PostType } from "./types";
-import { CommentType } from "./types";
+import { CommentType, PostType } from "./post.Interface";
 
 export const mockData: PostType[] = [
   {
     id: "1",
-    body: "mock body1",
-    userId: "mock user1",
-    likedBy: {
-      userIds: ["mock user1", "mock user2"],
-    },
+    body: "jeg er veldig glad i tailwind",
+    author: "Ola",
+    amtComments: 2,
+    amtLikes: 1,
   },
   {
     id: "2",
-    body: "mock body2",
-    userId: "mock user2",
-    likedBy: {
-      userIds: ["mock user1"],
-    },
+    body: "jeg hater alle",
+    author: "Jørgen",
+    amtComments: 3,
+    amtLikes: 2,
   },
   {
     id: "3",
-    body: "mock body3",
-    userId: "mock user",
-    likedBy: {
-      userIds: ["mock user1", "mock user2"],
-    },
+    body: "jeg heter fredrik",
+    author: "Fredrik",
+    amtComments: 4,
+    amtLikes: 3,
   },
 ];
 
@@ -32,19 +28,17 @@ export const commentsMock: CommentType[] = [
   {
     id: "1",
     body: "mock comment",
-    userId: "mock user",
-    likedBy: {
-      userIds: ["mock user1", "mock user2"],
-    },
+    author: "2",
+    amtComments: 0,
+    amtLikes: 1,
     parentID: "1",
   },
   {
     id: "2",
     body: "mock comment",
-    userId: "mock user",
-    likedBy: {
-      userIds: ["mock user1", "mock user2"],
-    },
+    author: "1",
+    amtComments: 1,
+    amtLikes: 1,
     parentID: "1",
   },
 ];

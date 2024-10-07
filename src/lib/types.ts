@@ -3,7 +3,7 @@ export type PostType = {
   body: string;
   userId: string;
   likedBy?: {
-    users: string[];
+    userIds: string[];
   };
 }
 

@@ -4,15 +4,20 @@ import { User } from "../../lib/user.Interface";
 
 export const Userpage = () => {
   const [posts, setPosts] = useState<Post[]>([]);
+  const [likedPosts, setLikedPosts] = useState<Post[]>([]);
 
   useEffect(() => {
     setPosts([]);
   });
 
+  useEffect(() => {
+    setLikedPosts([]);
+  });
+
   return (
     <div>
       <div> {/* Header  */}
-        <h1></h1>
+        <h1>{User.username}</h1>
       </div>
       {/* Body  */}
       <div>

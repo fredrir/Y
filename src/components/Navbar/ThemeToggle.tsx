@@ -27,9 +27,12 @@ const ThemeToggle = () => {
   };
 
   return (
-    <>
-      <div className="hidden size-6 md:block">
-        <button className="group rounded-full" onClick={toggleTheme}>
+    <div>
+      <div className="hidden md:block">
+        <button
+          className="group rounded-full transition duration-300 ease-in-out"
+          onClick={toggleTheme}
+        >
           {theme === "dark" ? (
             <MoonIconSolid className="size-6 transition-transform duration-300 ease-in-out group-hover:scale-110" />
           ) : (

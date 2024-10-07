@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { PostType } from "../../lib/post.Interface";
-import { CommentType } from "../../lib/comment.Interface";
+import { mockData, commentsMock, userMock } from "../../lib/mockupData";
+import { PostType, CommentType } from "../../lib/types";
 
 export const Userpage = () => {
   const [posts, setPosts] = useState<PostType[]>([]);
@@ -22,7 +22,7 @@ export const Userpage = () => {
   return (
     <div>
       <div> {/* Header  */}
-        <h1>{User.username}</h1>
+        <h1>{userMock.username}</h1>
       </div>
       {/* Body  */}
       <div>

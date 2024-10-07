@@ -1,13 +1,12 @@
 export type PostType = {
   id: string;
   body: string;
-  userId: string;
-  likedBy?: {
-    userIds: string[];
-  };
-}
+  author: string;
+  amtLikes: number;
+  amtComments: number;
+};
 
-export type CommentType  = PostType & {
+export type CommentType = PostType & {
   parentID: string;
 }
 

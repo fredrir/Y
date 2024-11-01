@@ -37,17 +37,17 @@ const SearchPage = () => {
 
   return (
     <div className="w-full">
-      <header>
-        <Button
-          className="m-2 flex gap-2 text-xl"
-          onClick={() => window.history.back()}
-          variant="ghost"
-        >
-          <ArrowUturnLeftIcon className="size-6" />
-          <p>Back</p>
-        </Button>
-      </header>
       <main className="mx-auto flex w-full max-w-xl flex-col items-center justify-center px-4">
+        <header className=" self-start mt-3">
+          <Button
+            className="m-2 flex gap-2 text-xl"
+            onClick={() => window.history.back()}
+            variant="ghost"
+          >
+            <ArrowUturnLeftIcon className="size-6" />
+            <p>Back</p>
+          </Button>
+        </header>
         <h1 className="my-4 text-center text-2xl font-bold">
           Search results for: {searchQuery}
         </h1>

@@ -34,7 +34,7 @@ export const Sidebar = () => {
   };
 
   return (
-    <div className="fixed top-0 z-20 flex flex-grow min-w-72 flex-col gap-16 pl-3 h-full">
+    <div className="fixed top-0 z-10 flex flex-grow flex-col gap-16 pl-3 h-full">
       <a
         href="/"
         className="relative m-2 mb-5 mt-1 h-20 w-20 items-center justify-center"

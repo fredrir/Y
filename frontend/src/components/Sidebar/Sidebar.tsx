@@ -39,10 +39,10 @@ export const Sidebar = () => {
         href="/"
         className="relative m-2 mb-5 mt-1 h-20 w-20 items-center justify-center"
       >
-        <div className="absolute left-6 top-1 flex h-16 w-16 items-center justify-center rounded-lg border border-gray-950/80 bg-gray-100/80 dark:border-gray-100/80 dark:bg-gray-950/80">
+        <div className="absolute left-5 top-1 flex h-16 w-16 items-center justify-center rounded-lg border border-gray-950/80 bg-gray-100/80 dark:border-gray-100/80 dark:bg-gray-950/80">
           <span className="text-3xl font-bold">Y</span>
         </div>
-        <div className="absolute left-1 top-6 flex h-16 w-16 items-center justify-center rounded-lg border border-gray-950/80 bg-gray-100/80 dark:border-gray-100/80 dark:bg-gray-950/80">
+        <div className="absolute left-1 top-5 flex h-16 w-16 items-center justify-center rounded-lg border border-gray-950/80 bg-gray-100/80 dark:border-gray-100/80 dark:bg-gray-950/80">
           <span className="text-3xl font-bold">Y</span>
         </div>
       </a>

@@ -72,7 +72,7 @@ createRoot(document.getElementById("root")!).render(
             <div className="w-1/4">
               <Sidebar />
             </div>
-            <div className="h-max w-2/4">
+            <div className="w-2/4 min-h-screen">
               <RouterProvider router={router} />
             </div>
             <div className="w-1/4">

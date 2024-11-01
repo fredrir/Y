@@ -1,5 +1,5 @@
 import { useAuth } from "@/components/AuthContext";
-import ThemeToggle from "@/components/Navbar/ThemeToggle";
+import ThemeToggle from "@/components/ThemeToggle";
 import {
   Bars3Icon,
   HomeIcon,
@@ -50,7 +50,7 @@ export const DropdownMenu = () => {
   }, [menuRef]);
 
   return (
-    <div className="relative block md:hidden" ref={menuRef}>
+    <div className="relative block" ref={menuRef}>
       <div
         onClick={toggleMenu}
         className="cursor-pointer transition-transform duration-300"

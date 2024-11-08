@@ -88,7 +88,7 @@ const { data: usersData, error: usersError } = useQuery<{
   return (
     <div className="sticky w-full h-screen bottom-0 overflow-y-scroll p-4">
       {/* <form onSubmit={(e) => e.preventDefault()} className="max-w-xs"> */}
-      <form onSubmit={navigateSearch} className="max-w-xs pt-10">
+      <form onSubmit={navigateSearch} className="max-w-64 pt-10 m-auto">
         <input
           type="search"
           id="search"
@@ -100,7 +100,7 @@ const { data: usersData, error: usersError } = useQuery<{
         />
       </form>
       {/* {searchResult()} */}
-      <aside className="hidden w-full max-w-64 py-8 lg:flex">
+      <aside className="w-full max-w-64 py-8 m-auto">
         <div className="flex w-full flex-col items-center gap-5">
           <h1 className="text-3xl">People to follow</h1>
           {usersData?.getUsers.map((recommendedUser) => (

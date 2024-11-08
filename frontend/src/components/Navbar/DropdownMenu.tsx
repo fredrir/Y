@@ -90,7 +90,7 @@ export const DropdownMenu = () => {
             {route.name}
           </a>
         ))}
-        <ThemeToggle />
+        <ThemeToggle type={2} />
         {user && (
           <button
             onClick={() => {

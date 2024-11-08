@@ -1,14 +1,14 @@
-import { useAuth } from "@/components/AuthContext";
-import Avatar from "@/components/Profile/Avatar";
+// import { useAuth } from "@/components/AuthContext";
+// import Avatar from "@/components/Profile/Avatar";
 import { DropdownMenu } from "@/components/Navbar/DropdownMenu";
-import ThemeToggle from "@/components/Navbar/ThemeToggle";
+// import ThemeToggle from "@/components/Navbar/ThemeToggle";
 import { FormEvent, useState } from "react";
 
 const Navbar = () => {
   const params = new URLSearchParams(location.search);
   const currentQuery = params.get("q") || "";
   const [searchQuery, setSearchQuery] = useState(currentQuery);
-  const { logout, user } = useAuth();
+  // const { logout, user } = useAuth();
 
   const navigateSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -16,14 +16,14 @@ const Navbar = () => {
     window.location.href = `/project2/search?q=${encodeURIComponent(searchQuery)}`;
   };
 
-  const login = () => {
-    window.location.href = "/project2/login";
-  };
+  // const login = () => {
+  //   window.location.href = "/project2/login";
+  // };
 
   return (
     <>
-      <nav className="fixed z-10 flex h-20 w-full items-center justify-between bg-gray-200/40 px-5 py-5 backdrop-blur-sm dark:bg-gray-950/80">
-        <a
+      <nav className="fixed z-10 flex h-24 w-full items-center justify-between bg-gray-200/40 px-5 py-5 backdrop-blur-sm dark:bg-gray-950/80">
+        {/* <a
           href="/project2"
           className="group flex items-center justify-center gap-5 hover:scale-110 hover:text-gray-300"
         >
@@ -32,9 +32,8 @@ const Navbar = () => {
               Y
             </span>
           </h1>
-        </a>
-
-        <div className="mx-4 flex max-w-xs flex-1 items-center justify-center gap-2 sm:max-w-lg md:justify-end">
+        </a> */}
+        <div className="mx-4 flex w-1/4 flex-1 items-center justify-center gap-2">
           <form onSubmit={navigateSearch}>
             <input
               type="search"
@@ -46,7 +45,7 @@ const Navbar = () => {
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </form>
-          <div className="hidden items-center gap-2 md:flex">
+          {/*<div className="hidden items-center gap-2 md:flex">
             <ThemeToggle />
             <div className="flex items-center gap-2">
               {user && (
@@ -54,7 +53,7 @@ const Navbar = () => {
                   <Avatar user={user} large={false} />{" "}
                 </div>
               )}
-              {user ? (
+               {user ? (
                 <button
                   onClick={logout}
                   className="rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700"
@@ -70,9 +69,11 @@ const Navbar = () => {
                 </button>
               )}
             </div>
-          </div>
+          </div>*/}
         </div>
-        <DropdownMenu />
+        <div className="block sm:hidden">
+          <DropdownMenu />
+        </div>
       </nav>
       <div className="h-20"></div>
     </>

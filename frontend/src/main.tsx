@@ -13,6 +13,8 @@ import { createRoot } from "react-dom/client";
 import { Toaster } from "react-hot-toast";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginForm from "./components/LoginForm";
+import { Sidebar } from "./components/Sidebar/Sidebar";
+import { Searchbar } from "./components/Searchbar/Searchbar";
 
 const router = createBrowserRouter([
   {
@@ -54,12 +56,44 @@ createRoot(document.getElementById("root")!).render(
     <ApolloProvider client={client}>
       <AuthProvider>
         <Toaster />
-        <div className="flex min-h-svh min-w-fit flex-col bg-gray-100 dark:bg-gray-800">
+        {/* Small screen */}
+        <div className="flex w-full flex-col bg-gray-100 dark:bg-gray-800 sm:hidden">
           <Navbar />
           <div className="mb-4 flex flex-grow items-start">
+            <Sidebar />
             <RouterProvider router={router} />
           </div>
           <Footer />
+        </div>
+        {/* Medium screen */}
+        <div className="hidden w-full flex-col bg-gray-100 dark:bg-gray-800 sm:flex lg:hidden">
+          <Navbar />
+          <div className="mb-4 flex w-full">
+            <div className="w-1/6">
+              <Sidebar />
+            </div>
+            <div className="left-1/6 m-auto flex w-2/6 flex-grow items-center justify-center">
+              <RouterProvider router={router} />
+            </div>
+          </div>
+          <Footer />
+        </div>
+        {/* Large screen */}
+        <div className="hidden min-h-screen w-full flex-col bg-gray-100 dark:bg-gray-800 lg:flex">
+          <div className="mb-4 flex w-full flex-grow">
+            <div className="w-1/4 sticky top-0 h-screen">
+              <Sidebar />
+            </div>
+            <div className="min-h-screen w-2/4">
+              <RouterProvider router={router} />
+            </div>
+            <div className="w-1/4 sticky top-0 h-screen overflow-y-auto">
+              <Searchbar />
+            </div>
+          </div>
+          <div className=" ">
+            <Footer />
+          </div>
         </div>
       </AuthProvider>
     </ApolloProvider>

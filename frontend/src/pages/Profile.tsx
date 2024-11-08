@@ -119,7 +119,7 @@ const Profile = () => {
   if (!user) return <p>User not found.</p>;
 
   return (
-    <div className="w-full px-5">
+    <div className="w-full px-5 py-5">
       <BackButton />
       {loggedInUser && loggedInUser.username === username && (
         <div className="pt-5 text-center">

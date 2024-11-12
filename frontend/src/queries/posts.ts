@@ -6,7 +6,11 @@ export const GET_POSTS = gql`
       id
       body
       originalBody
-      author
+      author {
+        id
+        username
+        profilePicture
+      }
       amtLikes
       amtComments
       imageUrl
@@ -21,7 +25,11 @@ export const GET_POST = gql`
       id
       body
       originalBody
-      author
+      author {
+        id
+        username
+        profilePicture
+      }
       amtLikes
       amtComments
       imageUrl
@@ -36,7 +44,11 @@ export const GET_POSTS_BY_IDS = gql`
       id
       body
       originalBody
-      author
+      author {
+        id
+        username
+        profilePicture
+      }
       amtLikes
       amtComments
       createdAt
@@ -46,11 +58,15 @@ export const GET_POSTS_BY_IDS = gql`
 `;
 
 export const CREATE_POST = gql`
-  mutation CreatePost($body: String!, $file: Upload) {
+  mutation CreatePost($body: String, $file: Upload) {
     createPost(body: $body, file: $file) {
       id
       body
-      author
+      author {
+        id
+        username
+        profilePicture
+      }
       amtLikes
       amtComments
       imageUrl
@@ -61,16 +77,9 @@ export const CREATE_POST = gql`
 `;
 
 export const EDIT_POST = gql`
-  mutation EditPost($id: ID!, $body: String!, $file: Upload) {
+  mutation EditPost($id: ID!, $body: String, $file: Upload) {
     editPost(id: $id, body: $body, file: $file) {
       id
-      body
-      originalBody
-      author
-      amtLikes
-      amtComments
-      imageUrl
-      createdAt
     }
   }
 `;
@@ -98,6 +107,78 @@ export const UNLIKE_POST = gql`
     unlikePost(postID: $postID) {
       id
       amtLikes
+    }
+  }
+`;
+
+export const GET_PARENT = gql`
+  query GetParent($parentID: ID!, $parentType: String!) {
+    getParent(parentID: $parentID, parentType: $parentType) {
+      ... on Post {
+        id
+        body
+        originalBody
+        author {
+          id
+          username
+          profilePicture
+        }
+        amtLikes
+        amtComments
+        imageUrl
+        createdAt
+      }
+      ... on Comment {
+        id
+        parentID
+        parentType
+        body
+        author {
+          id
+          username
+          profilePicture
+        }
+        amtLikes
+        amtComments
+        createdAt
+        imageUrl
+      }
+    }
+  }
+`;
+
+export const GET_PARENTS_BY_IDS = gql`
+  query GetParentsByIds($parents: [ParentInput!]!) {
+    getParentsByIds(parents: $parents) {
+      ... on Post {
+        id
+        body
+        originalBody
+        author {
+          id
+          username
+          profilePicture
+        }
+        amtLikes
+        amtComments
+        imageUrl
+        createdAt
+      }
+      ... on Comment {
+        id
+        parentID
+        parentType
+        body
+        author {
+          id
+          username
+          profilePicture
+        }
+        amtLikes
+        amtComments
+        createdAt
+        imageUrl
+      }
     }
   }
 `;

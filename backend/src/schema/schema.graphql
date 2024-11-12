@@ -7,16 +7,26 @@ type Query {
   searchPosts(query: String!, page: Int!): [Post!]!
   searchUsers(query: String!): [User!]!
   getPostsByIds(ids: [ID!]!): [Post!]!
+  getComment(id: ID!): Comment
   getCommentsByIds(ids: [ID!]!): [Comment!]!
+  getParent(parentID: ID!, parentType: String!): Parent
+  getParentsByIds(parents: [ParentInput!]!): [Parent!]!
+}
+
+union Parent = Post | Comment
+
+input ParentInput {
+  id: ID!
+  type: String!
 }
 
 scalar Upload
 
 type Post {
   id: ID!
-  body: String!
+  body: String
   originalBody: String
-  author: String!
+  author: User!
   amtLikes: Int!
   amtComments: Int!
   createdAt: String!
@@ -25,10 +35,12 @@ type Post {
 
 type Comment {
   id: ID!
-  body: String!
-  author: String!
+  body: String
+  author: User!
   parentID: ID!
+  parentType: String!
   amtLikes: Int!
+  amtComments: Int!
   createdAt: String!
   imageUrl: String
 }
@@ -38,6 +50,7 @@ type User {
   username: String!
   postIds: [ID!]!
   likedPostIds: [ID!]!
+  likedCommentIds: [ID!]!
   commentIds: [ID!]!
   following: [User!]!
   followers: [User!]!
@@ -46,13 +59,16 @@ type User {
 }
 
 type Mutation {
-  createPost(body: String!, file: Upload): Post!
-  editPost(id: ID!, body: String!, file: Upload): Post!
-  createComment(body: String!, parentID: ID!, file: Upload): Comment!
+  createPost(body: String, file: Upload): Post!
+  editPost(id: ID!, body: String, file: Upload): Post!
+  editComment(id: ID!, body: String, file: Upload): Comment!
+  createComment(body: String, parentID: ID!, parentType: String!, file: Upload): Comment!
   deletePost(id: ID!): Post!
-  deleteComment(id: ID!): Comment!
+  deleteComment(id: ID!, parentID: ID!, parentType: String!): Comment!
   likePost(postID: ID!): Post!
   unlikePost(postID: ID!): Post!
+  likeComment(id: ID!): Comment!
+  unlikeComment(id: ID!): Comment!
   followUser(username: String!): User!
   unfollowUser(username: String!): User!
   register(username: String!, password: String!): String!

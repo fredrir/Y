@@ -1,7 +1,7 @@
 import { useAuth } from "@/components/AuthContext";
-import Avatar from "@/components/Profile/Avatar";
 import FollowButton from "@/components/FollowButton";
 import PostBody from "@/components/Post/PostBody";
+import Avatar from "@/components/Profile/Avatar";
 import { formatTimestamp } from "@/lib/dateUtils";
 import { CommentType, PostType } from "@/lib/types";
 import { ApolloError } from "@apollo/client";
@@ -12,17 +12,17 @@ import { MouseEvent, TouchEvent, useState } from "react";
 
 interface PostContentProps {
   post: PostType | CommentType;
-  toggleLike?: (e: MouseEvent<HTMLButtonElement>) => void;
-  isLiked?: boolean;
-  amtLikes?: number;
-  doesntRedirect?: boolean;
-  handleDelete: (e: MouseEvent<HTMLButtonElement>) => Promise<void>;
+  toggleLike: (e: MouseEvent<HTMLButtonElement>) => void;
+  isLiked: boolean;
+  amtLikes: number;
+  handleDelete: () => Promise<void>;
   deleteLoading: boolean;
   deleteError: ApolloError | undefined;
+  maxWidth?: string;
   className?: string;
+  doesntRedirect?: boolean;
   disableTopMargin: boolean;
   disableBottomMargin: boolean;
-  maxWidth?: string;
 }
 
 const PostContent = ({
@@ -30,14 +30,14 @@ const PostContent = ({
   toggleLike,
   isLiked,
   amtLikes,
-  doesntRedirect,
   handleDelete,
   deleteLoading,
   deleteError,
+  maxWidth,
   className = "",
+  doesntRedirect,
   disableTopMargin,
   disableBottomMargin,
-  maxWidth,
 }: PostContentProps) => {
   const { user } = useAuth();
   const isComment = "parentID" in post;
@@ -55,36 +55,36 @@ const PostContent = ({
 
   return (
     <article
-      className={`${
+      className={`flex w-full flex-col gap-2 rounded-md border-2 p-4 pb-2 text-black shadow-md dark:text-white ${
         disableBottomMargin ? "" : "mb-2"
-      } ${disableTopMargin ? "" : "mt-2"} flex w-full flex-col gap-2 ${
+      } ${disableTopMargin ? "" : "mt-2"} ${
         maxWidth !== undefined ? maxWidth : "max-w-xl"
-      } rounded-md border-2 p-4 ${
-        isComment ? "" : "pb-2"
-      } text-black shadow-md dark:text-white ${
-        doesntRedirect ? "cursor-text" : "cursor-pointer"
-      } ${className}`}
+      } ${doesntRedirect ? "cursor-text" : "cursor-pointer"} ${className}`}
       onClick={(e: MouseEvent | TouchEvent) => {
+        e.preventDefault();
         e.stopPropagation();
         if (!doesntRedirect) {
-          document.location.href = `/project2/post/${
-            isComment ? post.parentID : post.id
-          }`;
+          document.location.href = `/project2/${isComment ? "reply" : "post"}/${post.id}`;
         }
       }}
     >
       <header className="flex flex-col gap-1">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-2">
-            <Avatar username={post.author} />
-            <a href={`/project2/user/${post.author}`}>
+            <Avatar user={post.author} />
+            <a
+              href={`/project2/user/${post.author.username}`}
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+            >
               <p className="font-mono underline-offset-4 hover:underline">
-                <span className="font-sans">@</span>
-                {post.author}
+                <span className="font-sans break-words">@</span>
+                {post.author.username}
               </p>
             </a>
-            {post.author !== user?.username && (
-              <FollowButton targetUsername={post.author} />
+            {post.author.username !== user?.username && (
+              <FollowButton targetUsername={post.author.username} />
             )}
             <p>·</p>
             <p>{formatTimestamp(post.createdAt)}</p>
@@ -109,23 +109,28 @@ const PostContent = ({
           </div>
 
           <div className="flex gap-2">
-            {user && user.username === post.author && !isComment && (
+            {user && user.username === post.author.username && (
               <button
                 className="text-gray-500 outline-none hover:text-blue-500"
                 aria-label="Edit post"
                 onClick={(e: MouseEvent | TouchEvent) => {
                   e.preventDefault();
                   e.stopPropagation();
-                  window.location.href = `/project2/post/${post.id}/edit`;
+                  window.location.href = `/project2/${isComment ? "reply" : "post"}/${post.id}/edit`;
                 }}
               >
                 <PencilIcon className="size-5" />
               </button>
             )}
             {user &&
-              (user.username === post.author || user.username === "admin") && (
+              (user.username === post.author.username ||
+                user.username === "admin") && (
                 <button
-                  onClick={handleDelete}
+                  onClick={(e: MouseEvent | TouchEvent) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleDelete();
+                  }}
                   className="text-gray-500 outline-none hover:text-red-500"
                   aria-label="Delete post"
                   disabled={deleteLoading}
@@ -156,7 +161,11 @@ const PostContent = ({
       </header>
 
       <PostBody
-        text={showOriginal ? (post.originalBody ?? post.body) : post.body}
+        text={
+          showOriginal
+            ? (post.originalBody ?? post.body ?? "")
+            : (post.body ?? "")
+        }
       />
 
       {post.imageUrl && (
@@ -167,26 +176,23 @@ const PostContent = ({
         />
       )}
 
-      {/* TODO: comment liking and replying  */}
-      {!isComment && (
-        <footer className="flex w-full justify-around">
-          <button
-            className="group flex items-center gap-1 p-2"
-            onClick={toggleLike}
-          >
-            {isLiked ? (
-              <HeartFilledIcon className="size-6 text-red-600 group-hover:scale-110" />
-            ) : (
-              <HeartIcon className="size-6 group-hover:scale-110" />
-            )}
-            <span className="select-none">{amtLikes}</span>
-          </button>
-          <div className="flex items-center gap-1">
-            <ChatBubbleLeftIcon className="size-6" />
-            <span className="select-none">{post.amtComments}</span>
-          </div>
-        </footer>
-      )}
+      <footer className="flex w-full justify-around">
+        <button
+          className="group flex items-center gap-1 p-2"
+          onClick={toggleLike}
+        >
+          {isLiked ? (
+            <HeartFilledIcon className="size-6 text-red-600 group-hover:scale-110" />
+          ) : (
+            <HeartIcon className="size-6 group-hover:scale-110" />
+          )}
+          <span className="select-none">{amtLikes}</span>
+        </button>
+        <div className="flex items-center gap-1">
+          <ChatBubbleLeftIcon className="size-6" />
+          <span className="select-none">{post.amtComments}</span>
+        </div>
+      </footer>
 
       {deleteError && (
         <p className="mt-2 text-sm text-red-500">

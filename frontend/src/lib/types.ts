@@ -25,6 +25,13 @@ export type CommentType = ContentType & {
   parentType: "post" | "reply";
 };
 
+export type RepostType = ContentType & {
+  __typename: "Repost";
+  repostID: string;
+  repostType: "post" | "reply";
+  repostAuthor: UserType;
+};
+
 export type UserType = {
   __typename: "User";
   id: string;

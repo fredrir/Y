@@ -424,6 +424,62 @@ export const resolvers: IResolvers = {
         throw new Error('Error creating post');
       }
     },
+    repostPost: async (_, { ID, type }, context) => {
+      if (!context.user) {
+        throw new AuthenticationError('You must be logged in to repost a post');
+      }
+
+      const user = await User.findById(context.user.id);
+
+      if (!user) {
+        throw new UserInputError('User not found');
+      }
+
+      let post: PostType | CommentType | null = null;
+
+      if (type === 'post') {
+        post = await Post.findById(ID);
+      } else if (type === 'reply') {
+        post = await Comment.findById(ID);
+      }
+
+      if (!post) {
+        throw new UserInputError('Post not found');
+      }
+
+      const hashTags = post.body ? extractHashtags(post.body) : undefined;
+      const mentionedUsers = post.body ? await extractMentions(post.body) : undefined;
+      try {
+        const newPost = new Post({
+          body: post.body,
+          author: post.author._id,
+          imageUrl: post.imageUrl,
+          hashTags,
+          mentionedUsers,
+          repostId: post._id,
+          repostType: type === 'post' ? 'post' : 'reply',
+          repostAuthor: user._id,
+          repostDate: new Date(),
+        });
+        const savedPost = await newPost.save();
+
+        user.postIds.push(savedPost.id);
+        await user.save();
+
+        if (mentionedUsers && mentionedUsers.length > 0) {
+          await Promise.all(
+            mentionedUsers.map((id) =>
+              User.findByIdAndUpdate(id, { $push: { mentionedPostIds: savedPost.id } })
+            )
+          );
+        }
+        await savedPost.populate('repostAuthor');
+
+        return await savedPost.populate('author');
+      } catch (err) {
+        throw new Error('Error creating post');
+      }
+    },
     updateProfile: async (_, { firstName, lastName, biography }, context) => {
       if (!context.user) {
         throw new AuthenticationError('You must be logged in to update profile');

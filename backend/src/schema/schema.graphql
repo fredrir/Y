@@ -36,6 +36,10 @@ type Post {
   imageUrl: String
   hashTags: [String!]!
   mentionedUsers: [User!]!
+  repostId: ID
+  repostAuthor: User
+  repostType: String
+  repostDate: String
 }
 
 type Comment {
@@ -93,4 +97,5 @@ type Mutation {
   changeProfilePicture(file: Upload): User!
   changeBackgroundPicture(file: Upload): User!
   updateProfile(firstName: String, lastName: String, biography: String): User!
+  repostPost(postID: ID!, type: String): Post!
 }

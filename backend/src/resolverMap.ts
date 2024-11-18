@@ -424,7 +424,7 @@ export const resolvers: IResolvers = {
         throw new Error('Error creating post');
       }
     },
-    repostPost: async (_, { ID, type }, context) => {
+    repostPost: async (_, { postID, type }, context) => {
       if (!context.user) {
         throw new AuthenticationError('You must be logged in to repost a post');
       }
@@ -438,9 +438,9 @@ export const resolvers: IResolvers = {
       let post: PostType | CommentType | null = null;
 
       if (type === 'post') {
-        post = await Post.findById(ID);
+        post = await Post.findById(postID);
       } else if (type === 'reply') {
-        post = await Comment.findById(ID);
+        post = await Comment.findById(postID);
       }
 
       if (!post) {

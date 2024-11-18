@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const REPOST_POST = gql`
-  mutation RepostPost($ID: ID!, $type: String!) {
-    repostPost(id: $id, type: $type) {
+  mutation RepostPost($postID: ID!, $type: String!) {
+    repostPost(postID: $postID, type: $type) {
       id
       body
       author {
@@ -16,7 +16,7 @@ export const REPOST_POST = gql`
       imageUrl
       createdAt
       __typename
-      repostID
+      repostId
       repostType
       repostAuthor {
         id

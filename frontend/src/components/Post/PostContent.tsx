@@ -3,15 +3,15 @@ import FollowButton from "@/components/FollowButton";
 import PostBody from "@/components/Post/PostBody";
 import Avatar from "@/components/Profile/Avatar";
 import { formatTimestamp } from "@/lib/dateUtils";
-import { CommentType, PostType } from "@/lib/types";
+import { CommentType, PostType, RepostType } from "@/lib/types";
 import { ApolloError } from "@apollo/client";
 import { ChatBubbleLeftIcon } from "@heroicons/react/24/outline";
 import { HeartFilledIcon } from "@radix-ui/react-icons";
-import { HeartIcon, PencilIcon, TrashIcon } from "lucide-react";
+import { HeartIcon, PencilIcon, Recycle, TrashIcon } from "lucide-react";
 import { MouseEvent, TouchEvent, useState } from "react";
 
 interface PostContentProps {
-  post: PostType | CommentType;
+  post: PostType | CommentType | RepostType;
   toggleLike: (e: MouseEvent<HTMLButtonElement>) => void;
   isLiked: boolean;
   amtLikes: number;
@@ -23,6 +23,7 @@ interface PostContentProps {
   doesntRedirect?: boolean;
   disableTopMargin: boolean;
   disableBottomMargin: boolean;
+  repostPost: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
 const PostContent = ({
@@ -38,6 +39,7 @@ const PostContent = ({
   doesntRedirect,
   disableTopMargin,
   disableBottomMargin,
+  repostPost,
 }: PostContentProps) => {
   const { user } = useAuth();
   const isComment = "parentID" in post;
@@ -52,6 +54,8 @@ const PostContent = ({
     setShowOriginal((prev) => !prev);
     if (showOriginal) setIsHovering(false);
   };
+
+  console.log(post);
 
   return (
     <article
@@ -68,6 +72,9 @@ const PostContent = ({
         }
       }}
     >
+      {post.__typename === "Repost" && (
+        <section className="flex flex-col gap-2">REEEEE</section>
+      )}
       <header className="flex flex-col gap-1">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-2">
@@ -187,6 +194,9 @@ const PostContent = ({
             <HeartIcon className="size-6 group-hover:scale-110" />
           )}
           <span className="select-none">{amtLikes}</span>
+        </button>
+        <button onClick={repostPost}>
+          <Recycle className="size-6 hover:text-green-600" />
         </button>
         <div className="flex items-center gap-1">
           <ChatBubbleLeftIcon className="size-6" />

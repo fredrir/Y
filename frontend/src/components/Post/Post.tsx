@@ -2,6 +2,7 @@ import { useAuth } from "@/components/AuthContext";
 import PostContent from "@/components/Post/PostContent";
 import { PostType } from "@/lib/types";
 import { DELETE_POST, LIKE_POST, UNLIKE_POST } from "@/queries/posts";
+import { REPOST_POST } from "@/queries/repost";
 import { useMutation } from "@apollo/client";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -47,6 +48,16 @@ const Post = ({
     },
     onError: (error) => {
       toast.error(`Error unliking post: ${error.message}`);
+    },
+  });
+
+  const [repostPostMutation] = useMutation(REPOST_POST, {
+    variables: { postID: post.id, type: "post" },
+    onCompleted: () => {
+      toast.success("Post reposted successfully");
+    },
+    onError: (error) => {
+      toast.error(`Error reposting post: ${error.message}`);
     },
   });
 
@@ -101,6 +112,16 @@ const Post = ({
     }
   };
 
+  const handleRepost = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    event.preventDefault();
+    try {
+      await repostPostMutation();
+    } catch (error) {
+      toast.error(`Error reposting post: ${(error as Error).message}`);
+    }
+  };
+
   if (isDeleted) return null;
 
   return (
@@ -108,6 +129,7 @@ const Post = ({
       post={post}
       handleDelete={handleDelete}
       toggleLike={toggleLike}
+      repostPost={handleRepost}
       isLiked={isLiked}
       amtLikes={amtLikes}
       deleteLoading={deleteLoading}

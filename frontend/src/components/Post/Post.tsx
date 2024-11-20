@@ -5,6 +5,7 @@ import { DELETE_POST, LIKE_POST, UNLIKE_POST } from "@/queries/posts";
 import { useMutation } from "@apollo/client";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { useHeartAnimation } from "@/components/HeartAnimation/HeartAnimationContext";
 
 interface PostProps {
   post: PostType;
@@ -23,6 +24,7 @@ const Post = ({
   const [isLiked, setIsLiked] = useState(false);
   const [amtLikes, setAmtLikes] = useState(post.amtLikes);
   const [isDeleted, setIsDeleted] = useState(false);
+  const { triggerHeart } = useHeartAnimation();
 
   useEffect(() => {
     setIsLiked(user?.likedPostIds.includes(post.id) ?? false);
@@ -84,6 +86,7 @@ const Post = ({
       unlikePost();
     } else {
       likePost();
+      triggerHeart();
     }
   };
 

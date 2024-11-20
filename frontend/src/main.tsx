@@ -17,6 +17,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HashtagPage from "./pages/HashtagPage";
 import HashtagsPage from "./pages/HashtagsPage";
 import UsersPage from "./pages/UsersPage";
+import { HeartAnimationProvider } from "./components/HeartAnimation/HeartAnimationContext";
 
 const router = createBrowserRouter([
   {
@@ -74,14 +75,16 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ApolloProvider client={client}>
       <AuthProvider>
-        <Toaster />
-        <div className="flex min-h-svh flex-col bg-gray-100 dark:bg-gray-800">
-          <Navbar />
-          <div className="mb-4 flex flex-grow items-start">
-            <RouterProvider router={router} />
+        <HeartAnimationProvider>
+          <Toaster />
+          <div className="flex min-h-svh flex-col bg-gray-100 dark:bg-gray-800">
+            <Navbar />
+            <div className="mb-4 flex flex-grow items-start">
+              <RouterProvider router={router} />
+            </div>
+            <Footer />
           </div>
-          <Footer />
-        </div>
+        </HeartAnimationProvider>
       </AuthProvider>
     </ApolloProvider>
   </StrictMode>,

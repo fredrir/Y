@@ -344,7 +344,12 @@ const HomePage = () => {
                 ))
               : combinedPosts.map((post) =>
                   post.__typename === "Post" ? (
-                    <Post key={post.id} post={post} />
+                    <Post
+                      key={post.id}
+                      post={post}
+                      refetch={refetch}
+                      refetchReposts={refetchReposts}
+                    />
                   ) : (
                     <Repost key={post.id} repost={post} />
                   ),

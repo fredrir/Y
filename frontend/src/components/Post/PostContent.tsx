@@ -25,6 +25,8 @@ interface PostContentProps {
   doesntRedirect?: boolean;
   disableTopMargin: boolean;
   disableBottomMargin: boolean;
+  refetch?: () => void;
+  refetchReposts?: () => void;
 }
 
 const PostContent = ({
@@ -40,11 +42,14 @@ const PostContent = ({
   doesntRedirect,
   disableTopMargin,
   disableBottomMargin,
+  refetch,
+  refetchReposts,
 }: PostContentProps) => {
   const { user } = useAuth();
   const [amtReposts, setAmtReposts] = useState(post.amtReposts);
   const [hasReposted, setHasReposted] = useState(false);
   const [showOriginal, setShowOriginal] = useState(false);
+  const { refetchUser } = useAuth();
   const [isHovering, setIsHovering] = useState(false);
   const BACKEND_URL =
     import.meta.env.VITE_BACKEND_URL || "http://localhost:3001";
@@ -66,10 +71,13 @@ const PostContent = ({
     variables: { id: post.id, type: post.__typename },
     onCompleted: () => {
       toast.success("Reposted successfully");
-      if (doesntRedirect) {
-        setAmtReposts(amtReposts + 1);
-        setHasReposted(true);
-      } else window.location.reload();
+      setAmtReposts(amtReposts + 1);
+      setHasReposted(true);
+      if (refetch && refetchReposts) {
+        refetch();
+        refetchReposts();
+      }
+      refetchUser();
     },
     onError: (error) => {
       toast.error(`Error reposting: ${error.message}`);
@@ -82,10 +90,14 @@ const PostContent = ({
     variables: { id: post.id, type: post.__typename },
     onCompleted: () => {
       toast.success("Unreposted successfully");
-      if (doesntRedirect) {
-        setAmtReposts(amtReposts - 1);
-        setHasReposted(false);
-      } else window.location.reload();
+
+      setAmtReposts(amtReposts - 1);
+      setHasReposted(false);
+      if (refetch && refetchReposts) {
+        refetch();
+        refetchReposts();
+      }
+      refetchUser();
     },
     onError: (error) => {
       toast.error(`Error unreposting: ${error.message}`);

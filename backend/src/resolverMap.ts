@@ -681,14 +681,20 @@ export const resolvers: IResolvers = {
         throw new UserInputError('User not found');
       }
 
-      const repost = await Repost.findOneAndDelete({ originalID: id });
+      const repost = await Repost.findOne({ originalID: id });
 
       if (!repost) {
         throw new UserInputError('Repost not found');
       }
 
-      if (!repost.author.equals(user.id)) {
+      if (!repost.author._id.equals(user.id)) {
         throw new AuthenticationError('You are not authorized to unrepost this post');
+      }
+
+      try {
+        await Repost.findByIdAndDelete(repost.id);
+      } catch (err) {
+        throw new Error('Error unreposting');
       }
 
       let originalPost: PostType | CommentType | null = null;

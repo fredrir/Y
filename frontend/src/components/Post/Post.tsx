@@ -8,6 +8,8 @@ import toast from "react-hot-toast";
 
 interface PostProps {
   post: PostType;
+  refetch?: () => void;
+  refetchReposts?: () => void;
   doesntRedirect?: boolean;
   disableTopMargin?: boolean;
   disableBottomMargin?: boolean;
@@ -15,6 +17,8 @@ interface PostProps {
 
 const Post = ({
   post,
+  refetch,
+  refetchReposts,
   doesntRedirect,
   disableBottomMargin = false,
   disableTopMargin = false,
@@ -107,6 +111,8 @@ const Post = ({
       post={post}
       handleDelete={handleDelete}
       toggleLike={toggleLike}
+      refetch={refetch}
+      refetchReposts={refetchReposts}
       isLiked={isLiked}
       amtLikes={amtLikes}
       deleteLoading={deleteLoading}

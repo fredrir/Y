@@ -1908,6 +1908,9 @@ export const resolvers: IResolvers = {
       return await User.findById(parent.author);
     },
     originalAuthor: async (parent) => {
+      if (parent.originalAuthor && parent.originalAuthor.username) {
+        return parent.originalAuthor;
+      }
       return await User.findById(parent.originalAuthor);
     },
     __isTypeOf(obj: any, context: any, info: any) {

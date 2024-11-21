@@ -123,6 +123,18 @@ export const resolvers: IResolvers = {
                 localField: 'author',
                 foreignField: '_id',
                 as: 'author',
+                pipeline: [
+                  {
+                    $project: {
+                      username: 1,
+                      firstName: 1,
+                      lastName: 1,
+                      profilePicture: 1,
+                      verified: 1,
+                      backgroundPicture: 1,
+                    },
+                  },
+                ],
               },
             },
             { $unwind: '$author' },
@@ -796,8 +808,8 @@ export const resolvers: IResolvers = {
             type: 'REPOST',
             postType: type.toLowerCase(),
             postID: id,
-            recipient: originalAuthor,
-            sender: user,
+            recipient: originalAuthor._id,
+            sender: user._id,
           });
 
           await notification.save();
@@ -805,8 +817,8 @@ export const resolvers: IResolvers = {
 
         const combinedPost = {
           id: repost.id,
-          author: user,
-          originalID: originalPost.id,
+          author: user._id,
+          originalID: originalPost._id,
           originalType: type,
           originalAuthor,
           repostedAt: repost.repostedAt,
@@ -1884,7 +1896,6 @@ export const resolvers: IResolvers = {
       return await User.findById(parent.author);
     },
   },
-
   Repost: {
     id: (parent) => {
       const id = parent._id || parent.id;
@@ -1892,6 +1903,12 @@ export const resolvers: IResolvers = {
         throw new Error('ID not found on Repost object');
       }
       return id.toString();
+    },
+    author: async (parent) => {
+      return await User.findById(parent.author);
+    },
+    originalAuthor: async (parent) => {
+      return await User.findById(parent.originalAuthor);
     },
     __isTypeOf(obj: any, context: any, info: any) {
       return obj.originalType !== undefined;

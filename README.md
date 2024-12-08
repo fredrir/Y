@@ -1,6 +1,6 @@
 # Y - The new age of social media
 
-Dette prosjektet er tilgjengelig [på nett også!](http://it2810-06.idi.ntnu.no/project2/)
+Dette prosjektet er tilgjengelig [på nett også!](https://y.hansteen.dev)
 
 ## Oppsett
 

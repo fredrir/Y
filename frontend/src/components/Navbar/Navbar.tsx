@@ -10,14 +10,14 @@ const Navbar = () => {
   const { logout, user } = useAuth();
 
   const login = () => {
-    window.location.href = "/project2/login";
+    window.location.href = "/login";
   };
 
   return (
     <>
       <nav className="fixed z-[60] flex h-20 w-full items-center justify-between bg-gray-200/80 px-5 py-5 backdrop-blur-sm dark:bg-gray-950/80">
         <a
-          href="/project2"
+          href="/"
           className="group flex items-center justify-center gap-5 hover:scale-110 hover:text-gray-300"
         >
           <h1 className="sm:text-2x text-2xl font-semibold lg:text-2xl xl:text-3xl">

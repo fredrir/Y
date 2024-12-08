@@ -91,7 +91,7 @@ const Comment = ({
         setIsDeleted(true);
         toast.success("Comment deleted");
         if (goHomeOnDelete) {
-          window.location.href = "/project2";
+          window.location.href = "/";
         }
       },
     });
@@ -105,7 +105,7 @@ const Comment = ({
     try {
       await deleteComment();
       if (redirectToParentOnDelete) {
-        window.location.href = `/project2/${comment.parentType}/${comment.parentID}`;
+        window.location.href = `/${comment.parentType}/${comment.parentID}`;
       }
     } catch (error) {
       toast.error(`Error deleting comment: ${(error as Error).message}`);

@@ -38,7 +38,7 @@ const Username = ({
   const tagProps = noHref
     ? {}
     : {
-        href: `/project2/user/${user.username}`,
+        href: `/user/${user.username}`,
         onClick: (e: MouseEvent | TouchEvent) => e.stopPropagation(),
       };
   return (

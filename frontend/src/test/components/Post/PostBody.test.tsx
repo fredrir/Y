@@ -47,11 +47,11 @@ describe("PostBody", () => {
 
     expect(screen.getByText("#hashtag")).toHaveAttribute(
       "href",
-      "/project2/hashtag/hashtag",
+      "/hashtag/hashtag",
     );
     expect(screen.getByText("@mention")).toHaveAttribute(
       "href",
-      "/project2/user/mention",
+      "/user/mention",
     );
     expect(screen.getByText("https://example.com")).toHaveAttribute(
       "href",

@@ -113,23 +113,21 @@ const SearchBar = () => {
     if (activeSuggestionIndex === 0 || suggestions.length === 0) {
       if (searchQuery.trim().length === 0) return;
       saveSearchTerm(searchQuery);
-      window.location.href = `/project2/search?q=${encodeURIComponent(
-        searchQuery,
-      )}`;
+      window.location.href = `/search?q=${encodeURIComponent(searchQuery)}`;
       return;
     }
     const selectedSuggestion = suggestions[activeSuggestionIndex - 1];
     if (typeof selectedSuggestion === "string") {
-      window.location.href = `/project2/search?q=${encodeURIComponent(
+      window.location.href = `/search?q=${encodeURIComponent(
         selectedSuggestion,
       )}`;
     } else {
       if (selectedSuggestion.__typename === "User") {
-        window.location.href = `/project2/user/${selectedSuggestion.username}`;
+        window.location.href = `/user/${selectedSuggestion.username}`;
         saveSearchTerm(`@${selectedSuggestion.username}`);
         return;
       } else {
-        window.location.href = `/project2/hashtag/${selectedSuggestion.tag}`;
+        window.location.href = `/hashtag/${selectedSuggestion.tag}`;
         saveSearchTerm(`#${selectedSuggestion.tag}`);
         return;
       }
@@ -221,9 +219,7 @@ const SearchBar = () => {
                     onMouseEnter={() => setActiveSuggestionIndex(index + 1)}
                   >
                     <a
-                      href={`/project2/search?q=${encodeURIComponent(
-                        suggestion,
-                      )}`}
+                      href={`/search?q=${encodeURIComponent(suggestion)}`}
                       className="flex-grow"
                     >
                       <p className="p-1">{suggestion}</p>
@@ -245,7 +241,7 @@ const SearchBar = () => {
                         ? "bg-blue-500 text-white dark:bg-blue-800"
                         : ""
                     }`}
-                    href={`/project2/${
+                    href={`/${
                       suggestion.__typename === "User"
                         ? `user/${suggestion.username}`
                         : `hashtag/${suggestion.tag}`

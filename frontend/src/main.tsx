@@ -21,52 +21,52 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
-    path: "/project2",
+    path: "/",
     element: <HomePage />,
   },
   {
-    path: "/project2/login",
+    path: "/login",
     element: <LoginForm view="login" />,
   },
   {
-    path: "/project2/register",
+    path: "/register",
     element: <LoginForm view="register" />,
   },
   {
-    path: "/project2/users",
+    path: "/users",
     element: <UsersPage />,
   },
   {
-    path: "/project2/user",
+    path: "/user",
     element: <Profile />,
   },
 
   {
-    path: "/project2/user/:username",
+    path: "/user/:username",
     element: <Profile />,
   },
   {
-    path: "/project2/user/:username/:view",
+    path: "/user/:username/:view",
     element: <Profile />,
   },
   {
-    path: "/project2/search/",
+    path: "/search/",
     element: <SearchPage />,
   },
   {
-    path: "/project2/post/:id/:edit?",
+    path: "/post/:id/:edit?",
     element: <PostPage />,
   },
   {
-    path: "/project2/reply/:id/:edit?",
+    path: "/reply/:id/:edit?",
     element: <CommentPage />,
   },
   {
-    path: "/project2/hashtag/",
+    path: "/hashtag/",
     element: <HashtagsPage />,
   },
   {
-    path: "/project2/hashtag/:hashtag",
+    path: "/hashtag/:hashtag",
     element: <HashtagPage />,
   },
   {

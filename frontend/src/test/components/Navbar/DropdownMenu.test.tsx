@@ -54,10 +54,10 @@ describe("DropdownMenu", () => {
     render(<DropdownMenu />);
 
     const routes = [
-      { name: "Profile", href: "/project2/user/testuser" },
-      { name: "Homepage", href: "/project2" },
-      { name: "Users", href: "/project2/users" },
-      { name: "Trending", href: "/project2/hashtag" },
+      { name: "Profile", href: "/user/testuser" },
+      { name: "Homepage", href: "/" },
+      { name: "Users", href: "/users" },
+      { name: "Trending", href: "/hashtag" },
     ];
 
     routes.forEach((route) => {
@@ -89,10 +89,10 @@ describe("DropdownMenu", () => {
 
     // Adjust the routes for the logged-out state
     const routes = [
-      { name: "Login", href: "/project2/login" },
-      { name: "Homepage", href: "/project2" },
-      { name: "Users", href: "/project2/users" },
-      { name: "Trending", href: "/project2/hashtag" },
+      { name: "Login", href: "/login" },
+      { name: "Homepage", href: "/" },
+      { name: "Users", href: "/users" },
+      { name: "Trending", href: "/hashtag" },
     ];
 
     routes.forEach((route) => {

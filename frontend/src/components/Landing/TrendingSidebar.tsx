@@ -34,7 +34,7 @@ const TrendingSidebar = ({ pageSize }: TrendingSidebarProps) => {
               ))}
         </div>
         <a
-          href={`/project2/hashtag`}
+          href={`/hashtag`}
           className="mt-4 inline-flex items-center justify-center self-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-200 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
         >
           <HashtagIcon className="mr-2 size-5" aria-hidden="true" />

@@ -44,7 +44,7 @@ const NotificationCard = ({ notification }: NotificationCardProps) => {
         break;
       }
       text = `liked your ${notification.postType === "post" ? "post" : "comment"}`;
-      href = `/project2/${notification.postType}/${notification.postID}`;
+      href = `/${notification.postType}/${notification.postID}`;
       break;
     case "REPOST":
       if (!notification.postType) {
@@ -52,7 +52,7 @@ const NotificationCard = ({ notification }: NotificationCardProps) => {
         break;
       }
       text = `reposted your ${notification.postType === "post" ? "post" : "comment"}`;
-      href = `/project2/${notification.postType}/${notification.postID}`;
+      href = `/${notification.postType}/${notification.postID}`;
       break;
     case "COMMENT":
       if (!notification.postType) {
@@ -60,7 +60,7 @@ const NotificationCard = ({ notification }: NotificationCardProps) => {
         break;
       }
       text = `commented on your ${notification.postType === "post" ? "post" : "comment"}`;
-      href = `/project2/${notification.postType}/${notification.postID}`;
+      href = `/${notification.postType}/${notification.postID}`;
       break;
     case "MENTION":
       if (!notification.postType) {
@@ -68,7 +68,7 @@ const NotificationCard = ({ notification }: NotificationCardProps) => {
         break;
       }
       text = `mentioned you in a ${notification.postType === "post" ? "post" : "comment"}`;
-      href = `/project2/${notification.postType}/${notification.postID}`;
+      href = `/${notification.postType}/${notification.postID}`;
       break;
     case "FOLLOWING_POST":
       if (!notification.postType) {
@@ -76,11 +76,11 @@ const NotificationCard = ({ notification }: NotificationCardProps) => {
         break;
       }
       text = "posted a new post";
-      href = `/project2/post/${notification.postID}`;
+      href = `/post/${notification.postID}`;
       break;
     case "FOLLOW":
       text = "followed you";
-      href = `/project2/user/${notification.sender.username}`;
+      href = `/user/${notification.sender.username}`;
       break;
   }
 

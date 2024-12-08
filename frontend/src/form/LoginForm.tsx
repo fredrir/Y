@@ -42,7 +42,7 @@ const LoginForm = ({ view }: LoginFormProps) => {
       if (data.login) {
         login(data.login);
         toast.success("Logged in successfully!");
-        navigate(`/project2/`);
+        navigate(`/`);
       }
     } catch (error) {
       if (error instanceof Error) {
@@ -70,7 +70,7 @@ const LoginForm = ({ view }: LoginFormProps) => {
       if (data.register) {
         login(data.register); // Update AuthContext
         toast.success("Registered and logged in successfully!");
-        navigate(`/project2/user/${formData.username}`);
+        navigate(`/user/${formData.username}`);
       }
     } catch (error) {
       if (error instanceof Error) {
@@ -142,9 +142,7 @@ const LoginForm = ({ view }: LoginFormProps) => {
             <button
               onClick={() => {
                 window.location.href =
-                  currentView === "login"
-                    ? "/project2/register"
-                    : "/project2/login";
+                  currentView === "login" ? "/register" : "/login";
               }}
               className="text-sm text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300"
             >

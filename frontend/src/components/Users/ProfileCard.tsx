@@ -21,7 +21,7 @@ const ProfileCard = ({ user, large }: Props) => {
           backgroundSize: "100% 50%",
           backgroundPosition: "center top",
         }}
-        href={`/project2/user/${user.username}`}
+        href={`/user/${user.username}`}
         className="flex min-h-48 w-full flex-col items-center justify-center rounded-lg border border-gray-400 bg-zinc-200 bg-cover bg-no-repeat shadow-xl hover:opacity-80 dark:border-gray-600 dark:bg-zinc-800 md:min-h-64"
       >
         <div className="flex flex-col items-center justify-center gap-2 break-words">
@@ -48,7 +48,7 @@ const ProfileCard = ({ user, large }: Props) => {
   return (
     <a
       key={user.id}
-      href={`/project2/user/${user.username}`}
+      href={`/user/${user.username}`}
       className="bg-white-100 flex w-full flex-col items-center gap-2 rounded-lg border px-2 py-6 text-center shadow-lg hover:scale-105 dark:border-gray-700 dark:bg-gray-900"
     >
       <h1 className="text-xl">

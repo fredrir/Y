@@ -55,12 +55,12 @@ const PostPage = () => {
   useEffect(() => {
     if (!user || !post || !editing) return;
     if (user.username !== post?.author.username) {
-      window.location.href = `/project2/post/${id}`;
+      window.location.href = `/post/${id}`;
     }
   }, [user, editing, id, post]);
 
   if (!editing && edit) {
-    window.location.href = `/project2/post/${id}`;
+    window.location.href = `/post/${id}`;
   }
 
   const {
@@ -131,7 +131,7 @@ const PostPage = () => {
   >(EDIT_POST, {
     onCompleted: () => {
       toast.success("Post edited successfully!");
-      window.location.href = `/project2/post/${id}`;
+      window.location.href = `/post/${id}`;
     },
     onError: (err) => {
       console.error("Error editing post:", err);

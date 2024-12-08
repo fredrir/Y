@@ -72,12 +72,12 @@ const CommentPage = () => {
   useEffect(() => {
     if (!user || !reply || !editing) return;
     if (user.username !== reply?.author.username) {
-      window.location.href = `/project2/reply/${id}`;
+      window.location.href = `/reply/${id}`;
     }
   }, [user, editing, id, reply]);
 
   if (!editing && edit) {
-    window.location.href = `/project2/reply/${id}`;
+    window.location.href = `/reply/${id}`;
   }
 
   const {
@@ -148,7 +148,7 @@ const CommentPage = () => {
   >(EDIT_COMMENT, {
     onCompleted: () => {
       toast.success("Comment edited successfully!");
-      window.location.href = `/project2/reply/${id}`;
+      window.location.href = `/reply/${id}`;
     },
     onError: (err) => {
       console.error("Error editing post:", err);

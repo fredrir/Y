@@ -141,7 +141,7 @@ const PostContent = ({
           (!selection || selection.toString().length === 0) &&
           !doesntRedirect
         ) {
-          document.location.href = `/project2/${post.__typename === "Comment" ? "reply" : "post"}/${post.id}`;
+          document.location.href = `/${post.__typename === "Comment" ? "reply" : "post"}/${post.id}`;
         }
       }}
     >
@@ -182,7 +182,7 @@ const PostContent = ({
                 onClick={(e: MouseEvent | TouchEvent) => {
                   e.preventDefault();
                   e.stopPropagation();
-                  window.location.href = `/project2/${post.__typename === "Comment" ? "reply" : "post"}/${post.id}/edit`;
+                  window.location.href = `/${post.__typename === "Comment" ? "reply" : "post"}/${post.id}/edit`;
                 }}
               >
                 <PencilIcon className="size-5" />
@@ -292,7 +292,7 @@ const PostContent = ({
             e.preventDefault();
             e.stopPropagation();
 
-            const shareURL = `${window.location.origin}/project2/${post.__typename === "Comment" ? "reply" : "post"}/${post.id}`;
+            const shareURL = `${window.location.origin}/${post.__typename === "Comment" ? "reply" : "post"}/${post.id}`;
 
             if (navigator.clipboard) {
               navigator.clipboard

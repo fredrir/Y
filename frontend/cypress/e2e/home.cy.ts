@@ -23,7 +23,7 @@ describe("View All Users", () => {
 
     cy.get("a").contains("View All Users").click();
 
-    cy.url().should("include", "/project2/users");
+    cy.url().should("include", "/users");
 
     cy.contains("All Users");
   });
@@ -36,10 +36,7 @@ describe("Search Functionality", () => {
 
     cy.get("input#search").type(`${searchQuery}{enter}`);
     cy.get('div[data-state="closed"]').should("not.exist");
-    cy.url().should(
-      "include",
-      `/project2/search?q=${encodeURIComponent(searchQuery)}`,
-    );
+    cy.url().should("include", `/search?q=${encodeURIComponent(searchQuery)}`);
   });
 
   it("should test the auto suggestion", () => {
@@ -54,6 +51,6 @@ describe("Search Functionality", () => {
       });
     cy.get('div[data-state="closed"]').should("not.exist");
     cy.contains("#sigma");
-    cy.url().should("include", "/project2/hashtag/sigma");
+    cy.url().should("include", "/hashtag/sigma");
   });
 });

@@ -7,7 +7,7 @@ exports[`Navbar > matches the snapshot 1`] = `
   >
     <a
       class="group flex items-center justify-center gap-5 hover:scale-110 hover:text-gray-300"
-      href="/project2"
+      href="/"
     >
       <h1
         class="sm:text-2x text-2xl font-semibold lg:text-2xl xl:text-3xl"
@@ -175,7 +175,7 @@ exports[`Navbar > matches the snapshot 1`] = `
       >
         <a
           class="flex flex-row items-center gap-2 p-2 text-lg hover:bg-gray-200 dark:hover:bg-gray-900"
-          href="/project2/login"
+          href="/login"
         >
           <svg
             class="lucide lucide-log-in size-5"
@@ -206,7 +206,7 @@ exports[`Navbar > matches the snapshot 1`] = `
         </a>
         <a
           class="flex flex-row items-center gap-2 p-2 text-lg hover:bg-gray-200 dark:hover:bg-gray-900"
-          href="/project2"
+          href="/"
         >
           <svg
             aria-hidden="true"
@@ -228,7 +228,7 @@ exports[`Navbar > matches the snapshot 1`] = `
         </a>
         <a
           class="flex flex-row items-center gap-2 p-2 text-lg hover:bg-gray-200 dark:hover:bg-gray-900"
-          href="/project2/users"
+          href="/users"
         >
           <svg
             aria-hidden="true"
@@ -250,7 +250,7 @@ exports[`Navbar > matches the snapshot 1`] = `
         </a>
         <a
           class="flex flex-row items-center gap-2 p-2 text-lg hover:bg-gray-200 dark:hover:bg-gray-900"
-          href="/project2/hashtag"
+          href="/hashtag"
         >
           <svg
             aria-hidden="true"

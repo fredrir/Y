@@ -98,7 +98,7 @@ const Post = ({
         setIsDeleted(true);
         toast.success("Post deleted successfully");
         if (goHomeOnDelete) {
-          window.location.href = "/project2";
+          window.location.href = "/";
         }
       },
       onError: (err) => {

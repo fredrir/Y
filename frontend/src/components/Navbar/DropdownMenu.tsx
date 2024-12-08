@@ -19,7 +19,7 @@ export const DropdownMenu = () => {
   const routes = [
     {
       name: user ? "Profile" : "Login",
-      href: `/project2/${user ? `user/${user.username}` : "login"}`,
+      href: `/${user ? `user/${user.username}` : "login"}`,
       icon: user ? (
         <UserIcon className="size-5" />
       ) : (
@@ -28,17 +28,17 @@ export const DropdownMenu = () => {
     },
     {
       name: "Homepage",
-      href: "/project2",
+      href: "/",
       icon: <HomeIcon className="size-5" />,
     },
     {
       name: "Users",
-      href: "/project2/users",
+      href: "/users",
       icon: <UsersIcon className="size-5" />,
     },
     {
       name: "Trending",
-      href: "/project2/hashtag",
+      href: "/hashtag",
       icon: <HashtagIcon className="size-5" />,
     },
   ];

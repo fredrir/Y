@@ -18,7 +18,7 @@ const Avatar = ({
   const tagProps = noHref
     ? {}
     : {
-        href: `/project2/user/${encodeURIComponent(user.username)}`,
+        href: `/user/${encodeURIComponent(user.username)}`,
         onClick: (e: MouseEvent | TouchEvent) => e.stopPropagation(),
       };
   const BACKEND_URL =

@@ -61,7 +61,7 @@ const Profile = () => {
     variables: { username },
     onCompleted: () => {
       toast.success("User deleted successfully");
-      window.location.href = "/project2/";
+      window.location.href = "/";
     },
     onError: (err) => {
       toast.error(`Error deleting user: ${err.message}`);
@@ -101,7 +101,7 @@ const Profile = () => {
     import.meta.env.VITE_BACKEND_URL || "http://localhost:3001";
 
   if (!paramUsername && username) {
-    window.location.href = `/project2/user/${username}`;
+    window.location.href = `/user/${username}`;
   }
 
   const {
@@ -445,7 +445,7 @@ const Profile = () => {
           <h1 className="text-4xl">You are not logged in</h1>
           <button
             onClick={() => {
-              window.location.href = "/project2/login";
+              window.location.href = "/login";
             }}
             className="rounded-md bg-green-500 px-6 py-4 text-xl font-semibold text-white hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700"
           >

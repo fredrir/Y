@@ -56,7 +56,7 @@ export const Linkify = (
       parts.push(
         <Link
           key={`hashtag-${index}`}
-          to={`/project2/hashtag/${hashtag}`}
+          to={`/hashtag/${hashtag}`}
           onClick={(
             e: MouseEvent<HTMLAnchorElement> | TouchEvent<HTMLAnchorElement>,
           ) => {
@@ -74,7 +74,7 @@ export const Linkify = (
           <Tooltip>
             <TooltipTrigger asChild>
               <Link
-                to={`/project2/user/${mention}`}
+                to={`/user/${mention}`}
                 onClick={(
                   e:
                     | MouseEvent<HTMLAnchorElement>

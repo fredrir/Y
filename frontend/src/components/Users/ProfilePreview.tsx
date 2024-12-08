@@ -5,7 +5,7 @@ import CoverPhoto from "/coverphoto.jpg";
 
 const ProfilePreview = ({ user }: { user: UserType }) => (
   <a
-    href={`/project2/user/${user.username}`}
+    href={`/user/${user.username}`}
     onClick={(e) => {
       e.stopPropagation();
     }}

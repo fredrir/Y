@@ -1,6 +1,6 @@
 # Y - The new age of social media
 
-Dette prosjektet er tilgjengelig [på nett også!](https://y.hansteen.dev)
+Dette prosjektet er tilgjengelig [på nett også!](https://yeeter.no)
 
 ## Oppsett
 

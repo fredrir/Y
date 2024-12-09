@@ -11,7 +11,7 @@ export const postQueries: IResolvers = {
     getPosts: async (
       _: any,
       { page = 1, filter = 'LATEST', limit = 10 }: { page: number; filter: string; limit?: number },
-      { user }: { user?: UserType }
+      { user, isRetarded }: { user?: UserType; isRetarded?: boolean }
     ) => {
       const ITEMS_PER_PAGE = limit;
       const skip = (page - 1) * ITEMS_PER_PAGE;
@@ -254,6 +254,33 @@ export const postQueries: IResolvers = {
         }
 
         combinedResults = combinedResults.slice(0, ITEMS_PER_PAGE);
+
+        if (isRetarded) {
+          combinedResults = [
+            {
+                "__typename": "Post",
+                "id": "6756e9357a50c3bf2f45267d",
+                "body": "Dassbotn",
+                "originalBody": null,
+                "author": {
+                    "id": "672cda74f859ce3035778ce0",
+                    "username": "retardpolitiet",
+                    "firstName": "Retard",
+                    "lastName": "Politet",
+                    "profilePicture": "https://g.acdn.no/obscura/API/dynamic/r1/ece5/tr_1000_2000_s_f/0000/tons/2024/9/20/16/Politi-2.jpg?chk=F8ECED",
+                    "backgroundPicture": null,
+                    "verified": "DEVELOPER",
+                    "__typename": "User"
+                },
+                "amtLikes": 69,
+                "amtComments": 0,
+                "amtReposts": 0,
+                "imageUrl": "https://i.imgflip.com/9d531o.gif",
+                "createdAt": "1733749045885"
+            },
+            ...combinedResults
+          ]
+        }
 
         return combinedResults;
       } catch (err) {

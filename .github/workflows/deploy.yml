@@ -38,16 +38,16 @@ jobs:
 
       - name: Deploy Frontend
         run: |
-          rsync -av --delete --exclude='.htaccess' ./frontend/dist/ /var/www/html/
+          rsync -av --delete --exclude='.htaccess' ./frontend/dist/ /var/www/html/yeeter/
 
       - name: Deploy Backend
         run: |
-          pm2 delete "apollo-express-server" || true
+          pm2 delete "graphql-server" || true
 
           cat <<EOF > ecosystem.config.js
           module.exports = {
             apps: [{
-              name: 'apollo-express-server',
+              name: 'graphql-server',
               script: './backend/dist/index.js',
               env: {
                 MONGODB_URI: '${{ secrets.MONGODB_URI }}',

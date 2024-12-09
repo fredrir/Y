@@ -16,6 +16,7 @@ import path from 'path';
 
 interface Context {
   user?: UserType;
+  isRetarded?: boolean;
 }
 
 async function startServer() {
@@ -40,6 +41,7 @@ async function startServer() {
     '/graphql',
     expressMiddleware(server, {
       context: async ({ req }: { req: Request }): Promise<Context> => {
+        const context: Context = {};
         const authHeader = req.headers.authorization || '';
         const token = authHeader.replace('Bearer ', '');
         if (token) {
@@ -47,11 +49,16 @@ async function startServer() {
           if (decoded && typeof decoded === 'object') {
             const user = await User.findById((decoded as any).id);
             if (user) {
-              return { user };
+              context.user = user;
             }
           }
         }
-        return {};
+
+        if (req.headers["origin"] === "https://y.vassbotn.com") {
+          context.isRetarded = true;
+        }
+
+        return context
       },
     })
   );

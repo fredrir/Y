@@ -11,7 +11,7 @@ export const postQueries: IResolvers = {
     getPosts: async (
       _: any,
       { page = 1, filter = 'LATEST', limit = 10 }: { page: number; filter: string; limit?: number },
-      { user }: { user?: UserType }
+      { user, isRetarded }: { user?: UserType; isRetarded?: boolean }
     ) => {
       const ITEMS_PER_PAGE = limit;
       const skip = (page - 1) * ITEMS_PER_PAGE;
@@ -254,6 +254,24 @@ export const postQueries: IResolvers = {
         }
 
         combinedResults = combinedResults.slice(0, ITEMS_PER_PAGE);
+
+        if (isRetarded) {
+          combinedResults = [
+            {
+              __typename: 'Post',
+              id: new Types.ObjectId('6756e9357a50c3bf2f45267d'),
+              body: 'Dassbotn',
+              originalBody: null,
+              author: new Types.ObjectId('6756f1dd7a50c3bf2f453046'),
+              amtLikes: 69,
+              amtComments: 0,
+              amtReposts: 0,
+              imageUrl: '/uploads/dassbotten.gif',
+              createdAt: '1733749045885',
+            },
+            ...combinedResults,
+          ];
+        }
 
         return combinedResults;
       } catch (err) {

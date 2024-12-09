@@ -19,6 +19,8 @@ import { createRoot } from "react-dom/client";
 import { Toaster } from "react-hot-toast";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+//Yeeter
+
 const router = createBrowserRouter([
   {
     path: "/",

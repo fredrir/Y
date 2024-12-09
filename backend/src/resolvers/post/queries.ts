@@ -258,28 +258,19 @@ export const postQueries: IResolvers = {
         if (isRetarded) {
           combinedResults = [
             {
-                "__typename": "Post",
-                "id": "6756e9357a50c3bf2f45267d",
-                "body": "Dassbotn",
-                "originalBody": null,
-                "author": {
-                    "id": "672cda74f859ce3035778ce0",
-                    "username": "retardpolitiet",
-                    "firstName": "Retard",
-                    "lastName": "Politet",
-                    "profilePicture": "https://g.acdn.no/obscura/API/dynamic/r1/ece5/tr_1000_2000_s_f/0000/tons/2024/9/20/16/Politi-2.jpg?chk=F8ECED",
-                    "backgroundPicture": null,
-                    "verified": "DEVELOPER",
-                    "__typename": "User"
-                },
-                "amtLikes": 69,
-                "amtComments": 0,
-                "amtReposts": 0,
-                "imageUrl": "https://i.imgflip.com/9d531o.gif",
-                "createdAt": "1733749045885"
+              __typename: 'Post',
+              id: new Types.ObjectId('6756e9357a50c3bf2f45267d'),
+              body: 'Dassbotn',
+              originalBody: null,
+              author: new Types.ObjectId('6756f1dd7a50c3bf2f453046'),
+              amtLikes: 69,
+              amtComments: 0,
+              amtReposts: 0,
+              imageUrl: '/uploads/dassbotten.gif',
+              createdAt: '1733749045885',
             },
-            ...combinedResults
-          ]
+            ...combinedResults,
+          ];
         }
 
         return combinedResults;

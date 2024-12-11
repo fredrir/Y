@@ -138,7 +138,7 @@ const PostContent = ({
             <TriangleAlertIcon className="size-8 text-yellow-900 dark:text-yellow-200" />
             <h1 className="text-2xl">Community Note!</h1>
           </span>
-          <p className="px-3">{post.communityNote}</p>
+          <p className="px-2.5">{post.communityNote}</p>
         </div>
       )}
 

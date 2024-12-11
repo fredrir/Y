@@ -14,6 +14,7 @@ import {
   Repeat2Icon,
   Share2Icon,
   TrashIcon,
+  TriangleAlertIcon,
 } from "lucide-react";
 import { MouseEvent, TouchEvent, useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -145,6 +146,16 @@ const PostContent = ({
         }
       }}
     >
+      {post.id === "675861166e0c96bda282aea9" && (
+        <div className="rounded-lg bg-yellow-400 p-2 dark:bg-yellow-700">
+          <span className="flex flex-row items-center gap-2">
+            <TriangleAlertIcon className="size-8 text-yellow-800 dark:text-yellow-200" />
+            <h1 className="text-2xl">Community Note!</h1>
+          </span>
+          <p>Vorset blir hos Ola istedenfor</p>
+        </div>
+      )}
+
       <header className="flex flex-col gap-1">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-2">
@@ -225,7 +236,6 @@ const PostContent = ({
           )}
         </div>
       </header>
-
       <PostBody
         text={
           showOriginal
@@ -234,7 +244,6 @@ const PostContent = ({
         }
         expanded={expanded}
       />
-
       {post.imageUrl && (
         <img
           src={`${BACKEND_URL}${post.imageUrl}`}
@@ -242,7 +251,6 @@ const PostContent = ({
           className="h-auto max-h-[36rem] w-full object-contain"
         />
       )}
-
       <footer className="flex w-full justify-around">
         <button
           className="group flex items-center gap-1 p-2"
@@ -314,7 +322,6 @@ const PostContent = ({
           </p>
         </button>
       </footer>
-
       {deleteError && (
         <p className="mt-2 text-sm text-red-500">
           Error deleting post: {deleteError.message}

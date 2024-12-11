@@ -22,8 +22,10 @@ const Repost = ({ repost }: { repost: RepostType }) => {
     __typename: repost.parentID ? "Comment" : "Post",
     parentID: repost.parentID ?? "",
     parentType: repost.parentType ?? "post",
+    communityNote: repost.communityNote,
   };
   const yourRepost = repost.author.username === user?.username;
+
   return (
     <div className="mt-2 flex w-full max-w-xl flex-col justify-self-center">
       <header className="mx-1 flex h-fit items-end">

@@ -8,6 +8,7 @@ type ContentType = {
   amtReposts: number;
   imageUrl?: string;
   createdAt: string;
+  communityNote?: string;
 };
 
 export type HashtagType = {

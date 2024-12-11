@@ -22,6 +22,7 @@ export const GET_POSTS = gql`
         amtReposts
         imageUrl
         createdAt
+        communityNote
       }
       ... on Repost {
         id
@@ -54,6 +55,7 @@ export const GET_POSTS = gql`
         imageUrl
         createdAt
         hashTags
+        communityNote
         mentionedUsers {
           id
           username
@@ -90,6 +92,7 @@ export const GET_POST = gql`
       amtReposts
       imageUrl
       createdAt
+      communityNote
     }
   }
 `;
@@ -114,6 +117,7 @@ export const GET_POSTS_BY_IDS = gql`
       amtReposts
       createdAt
       imageUrl
+      communityNote
     }
   }
 `;
@@ -138,6 +142,7 @@ export const CREATE_POST = gql`
       amtReposts
       imageUrl
       createdAt
+      communityNote
       __typename
     }
   }
@@ -199,6 +204,7 @@ export const GET_PARENT = gql`
         amtReposts
         imageUrl
         createdAt
+        communityNote
       }
       ... on Comment {
         id
@@ -219,6 +225,7 @@ export const GET_PARENT = gql`
         amtReposts
         createdAt
         imageUrl
+        communityNote
       }
     }
   }
@@ -245,6 +252,7 @@ export const GET_PARENTS_BY_IDS = gql`
         amtReposts
         imageUrl
         createdAt
+        communityNote
       }
       ... on Comment {
         id
@@ -265,6 +273,7 @@ export const GET_PARENTS_BY_IDS = gql`
         amtReposts
         createdAt
         imageUrl
+        communityNote
       }
     }
   }

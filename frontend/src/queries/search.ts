@@ -20,6 +20,7 @@ export const SEARCH_POSTS = gql`
         amtReposts
         createdAt
         imageUrl
+        communityNote
       }
     }
   }

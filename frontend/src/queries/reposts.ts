@@ -32,6 +32,7 @@ export const REPOST_MUTATION = gql`
       amtReposts
       imageUrl
       createdAt
+      communityNote
     }
   }
 `;
@@ -78,6 +79,7 @@ export const GET_REPOSTS_BY_USER = gql`
       createdAt
       parentID
       parentType
+      communityNote
     }
   }
 `;

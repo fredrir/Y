@@ -55,6 +55,7 @@ type Post {
   imageUrl: String
   hashTags: [String!]!
   mentionedUsers: [User!]!
+  communityNote: String
 }
 
 type Comment {
@@ -71,6 +72,7 @@ type Comment {
   imageUrl: String
   hashTags: [String!]!
   mentionedUsers: [User!]!
+  communityNote: String
 }
 
 type TrendingHashtag {
@@ -116,6 +118,7 @@ type Repost {
   mentionedUsers: [User!]!
   parentID: ID
   parentType: String
+  communityNote: String
 }
 
 type Mutation {

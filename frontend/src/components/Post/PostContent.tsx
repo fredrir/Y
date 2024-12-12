@@ -134,9 +134,9 @@ const PostContent = ({
     >
       {post.communityNote && (
         <div className="flex flex-col gap-1 rounded-t-md bg-yellow-400 p-2 dark:bg-yellow-800">
-          <span className="flex flex-row items-center gap-2">
+          <span className="flex flex-row items-center gap-2 px-2.5">
             <TriangleAlertIcon className="size-8 text-yellow-900 dark:text-yellow-200" />
-            <h1 className="text-2xl">Community Note!</h1>
+            <h1 className="text-2xl font-bold">Community Note!</h1>
           </span>
           <p className="px-2.5">{post.communityNote}</p>
         </div>

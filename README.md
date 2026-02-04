@@ -1,4 +1,4 @@
-# Y - The new age of social media!!
+# Y - The new age of social media!
 
 Dette prosjektet er tilgjengelig [på nett også!!](https://yeeter.no)
 

@@ -55,7 +55,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.7.3",
     "sanitize-filename": "^1.6.3",
-    "sharp": "^0.33.5",
+    "sharp": "^0.35.3",
     "uuid": "^11.0.3"
   }
 }

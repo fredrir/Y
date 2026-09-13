@@ -1,0 +1,40 @@
+name: Build images
+'on':
+  push:
+    branches:
+    - main
+permissions:
+  contents: read
+jobs:
+  api:
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+      attestations: write
+    uses: fredrir/infra/.github/workflows/build-image.yml@c2b1be6f6cf468f67d7a21a28efa9e684809d7d0
+    with:
+      image: ghcr.io/fredrir/y-api
+      context: .
+      dockerfile: Dockerfile
+      test-command: 'export BUILDKITD_FLAGS="$BUILDKITD_FLAGS --oci-worker-net=host"
+
+        buildctl-daemonless.sh build --frontend dockerfile.v0 --local context=. --local dockerfile=ci --opt filename=Containerfile
+        --opt platform=linux/amd64 --opt target=api-tests'
+      recipe: y-api
+  web:
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+      attestations: write
+    uses: fredrir/infra/.github/workflows/build-image.yml@c2b1be6f6cf468f67d7a21a28efa9e684809d7d0
+    with:
+      image: ghcr.io/fredrir/y-web
+      context: .
+      dockerfile: Dockerfile
+      test-command: 'export BUILDKITD_FLAGS="$BUILDKITD_FLAGS --oci-worker-net=host"
+
+        buildctl-daemonless.sh build --frontend dockerfile.v0 --local context=. --local dockerfile=ci --opt filename=Containerfile
+        --opt platform=linux/amd64 --opt target=web-tests'
+      recipe: y-web

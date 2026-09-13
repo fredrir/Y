@@ -245,12 +245,12 @@ export const commentMutations: IResolvers = {
         }
 
         if (deletedComment.amtReposts > 0) {
-          await User.updateMany({ $pull: { repostedPostIds: deletedComment.id } });
+          await User.updateMany({}, { $pull: { repostedPostIds: deletedComment.id } });
           await Repost.deleteMany({ originalID: deletedComment.id });
         }
 
         if (deletedComment.amtLikes > 0) {
-          await User.updateMany({ $pull: { likedCommentIds: deletedComment.id } });
+          await User.updateMany({}, { $pull: { likedCommentIds: deletedComment.id } });
           await Notification.deleteMany({
             type: 'LIKE',
             postType: 'post',

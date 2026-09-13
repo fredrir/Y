@@ -171,7 +171,7 @@ export const postQueries: IResolvers = {
               .skip(skip)
               .limit(ITEMS_PER_PAGE)
               .populate('author')
-              .lean()) as PostType[];
+              .lean()) as unknown as PostType[];
           }
         }
 
@@ -182,11 +182,13 @@ export const postQueries: IResolvers = {
             reposts.map(async (repost) => {
               let originalPost: PostType | CommentType | null = null;
               if (repost.originalType === 'Post') {
-                originalPost = (await Post.findById(repost.originalID).populate('author').lean()) as PostType;
+                originalPost = (await Post.findById(repost.originalID)
+                  .populate('author')
+                  .lean()) as unknown as PostType;
               } else if (repost.originalType === 'Comment') {
                 originalPost = (await Comment.findById(repost.originalID)
                   .populate('author')
-                  .lean()) as CommentType;
+                  .lean()) as unknown as CommentType;
               }
 
               if (!originalPost) {

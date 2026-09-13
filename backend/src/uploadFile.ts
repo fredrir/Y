@@ -53,7 +53,7 @@ export const uploadFile = async (
       const out = fs.createWriteStream(tempFilePath);
       let totalBytes = 0;
 
-      stream.on('data', (chunk: Buffer) => {
+      stream.on('data', (chunk: string | Buffer) => {
         totalBytes += chunk.length;
         if (totalBytes > MAX_SIZE) {
           stream.destroy(new Error('File size exceeds the 10MB limit.'));

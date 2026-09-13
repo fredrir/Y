@@ -185,11 +185,11 @@ export const userMutations: IResolvers = {
           }
 
           if (post.amtLikes > 0) {
-            await User.updateMany({ $pull: { likedPostIds: post.id } });
+            await User.updateMany({}, { $pull: { likedPostIds: post.id } });
           }
 
           if (post.amtReposts > 0) {
-            await User.updateMany({ $pull: { repostedPostIds: post.id } });
+            await User.updateMany({}, { $pull: { repostedPostIds: post.id } });
             await Repost.deleteMany({ originalID: post._id });
           }
         }
@@ -215,7 +215,7 @@ export const userMutations: IResolvers = {
           }
 
           if (comment.amtLikes > 0) {
-            await User.updateMany({ $pull: { likedCommentIds: comment.id } });
+            await User.updateMany({}, { $pull: { likedCommentIds: comment.id } });
           }
         }
 

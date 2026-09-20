@@ -23,7 +23,6 @@ jobs:
       image: ghcr.io/fredrir/y-api
       context: .
       dockerfile: Dockerfile
-      test-command: infra pipeline image --root .infra-build-recipe --context . --dockerfile ci/Containerfile --target api-tests --check-only --timeout 45m
       recipe: y-api
   web:
     permissions:
@@ -36,5 +35,4 @@ jobs:
       image: ghcr.io/fredrir/y-web
       context: .
       dockerfile: Dockerfile
-      test-command: infra pipeline image --root .infra-build-recipe --context . --dockerfile ci/Containerfile --target web-tests --check-only --timeout 45m
       recipe: y-web

@@ -36,3 +36,4 @@ jobs:
       context: .
       dockerfile: Dockerfile
       recipe: y-web
+      check-target: check-reports

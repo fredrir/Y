@@ -3,6 +3,12 @@ name: Build images
   push:
     branches:
     - main
+    paths-ignore:
+    - "**/*.md"
+    - "docs/**"
+concurrency:
+  group: images-${{ github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:

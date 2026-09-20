@@ -11,7 +11,9 @@
     "format": "prettier --write .",
     "test": "vitest",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:run": "cypress run",
+    "test:fast": "vitest run --config vitest.fast.config.ts",
+    "check:local": "vitest run --maxWorkers=1 --minWorkers=1 && npm run build"
   },
   "dependencies": {
     "@apollo/client": "^3.11.8",
